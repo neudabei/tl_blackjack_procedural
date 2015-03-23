@@ -1,4 +1,5 @@
 def calculate_total(cards)
+   # [['H', '3'], ['S', 'Q'], ... ]
   arr = cards.map{ |e| e[1] }
 
   total = 0
@@ -71,7 +72,7 @@ while mytotal < 21
     break
   end
 
-  # hit
+  # Hit
   new_card = deck.pop
   puts "Dealing new card to player #{new_card}"
   mycards << new_card
@@ -95,7 +96,7 @@ if dealertotal == 21
 end
 
 while dealertotal < 17
-  # hit
+  # Hit
   new_card = deck.pop
   puts "Dealing new card for dealer: #{new_card}"
   dealercards << new_card
