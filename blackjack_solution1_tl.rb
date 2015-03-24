@@ -29,10 +29,6 @@ def say(message)
 end
 
 
-def deal_new_card(card)
-  card << deck.pop
-end
-
 # Start game
 say("Welcome to Blackjack!")
 
@@ -41,8 +37,6 @@ cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 
 
 deck = suits.product(cards)
 deck.shuffle!
-
-# Deal Cards
 
 mycards = []
 dealercards = []
@@ -55,13 +49,17 @@ end
 dealertotal = calculate_total(dealercards)
 mytotal = calculate_total(mycards)
 
-# Show Cards
-
-say("........Shuffling cards.......")
-3.times do
-  print ".........."
-  sleep 0.5
+  
+def announce_shuffling_cards
+  say("........Shuffling cards.......")
+  3.times do
+    print ".........."
+    sleep 0.5
+  end
 end
+
+announce_shuffling_cards
+
 
 puts ""
 say("Dealer has: #{dealercards[0]} and *")
@@ -129,14 +127,16 @@ while dealertotal < 17
 
 end
 
-# Compare hands
 
-say("Dealer's cards:")
-dealercards.each { |card| puts "=> #{card}" }
-puts ""
-say("Your cards:")
-mycards.each { |card| puts "=> #{card}" }
-puts ""
+def compare_hands(cards,player)
+  say(player + "cards:")
+  cards.each { |card| puts "=> #{card}" }
+  puts ""
+end
+
+compare_hands(dealercards,"Dealer's")
+compare_hands(mycards,"Player's")
+
 
 if dealertotal > mytotal
   say("Sorry, dealer won.")
